@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#06131a" />
+
+    <title>Settle — instant notes, calm second brain</title>
+    <meta
+      name="description"
+      content="Settle is a keyboard-first notes app for Windows: instant capture, daily summaries, categories, and fast search — with a calm, uncluttered UI."
+    />
+
+    <meta property="og:title" content="Settle — instant notes, calm second brain" />
+    <meta
+      property="og:description"
+      content="Keyboard-first notes app for Windows. Capture instantly, then retrieve with a second brain view (summaries + categories + search)."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/settle_summary.png" />
+
+    <link rel="icon" href="data:," />
+    <link rel="preload" as="image" href="images/settle_summary.png" />
+    <link rel="preload" as="image" href="images/settle_themes.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Settle home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Settle</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#screens">Screens</a>
+          <a class="nav-link" href="#shortcuts">Shortcuts</a>
+          <a class="nav-link" href="#download">Download</a>
+        </nav>
+
+        <div class="header-cta">
+          <a class="btn btn-ghost" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">
+            Star on GitHub
+          </a>
+          <a class="btn btn-primary" href="#download">Get Settle</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div id="top" class="hero">
+        <div class="hero-bg" aria-hidden="true">
+          <div class="blob blob-a"></div>
+          <div class="blob blob-b"></div>
+          <div class="grid"></div>
+        </div>
+
+        <div class="container hero-inner">
+          <div class="hero-copy" data-reveal>
+            <p class="eyebrow">Keyboard-first notes for Windows</p>
+            <h1 class="hero-title">
+              Instant capture.
+              <span class="accent">Calm second brain.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Settle is a lightweight notes app built for speed and clarity: append to daily notes in seconds, then
+              retrieve context through summaries, categories, and search — without clutter.
+            </p>
+
+            <div class="hero-actions">
+              <a
+                class="btn btn-primary btn-lg"
+                href="https://github.com/acidmiku/settle/releases"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Download for Windows
+              </a>
+              <a class="btn btn-ghost btn-lg" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">
+                View on GitHub
+              </a>
+              <span class="btn btn-disabled btn-lg" aria-disabled="true">
+                Download for macOS
+                <span class="pill">Coming soon</span>
+              </span>
+            </div>
+
+            <div class="hero-meta">
+              <div class="meta-item">
+                <span class="meta-k">Local-first</span>
+                <span class="meta-v">SQLite on your machine</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-k">Search</span>
+                <span class="meta-v">Notes + second brain entries</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-k">Export</span>
+                <span class="meta-v">JSON + Markdown</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-shot" data-reveal>
+            <div class="shot-frame">
+              <img
+                src="images/settle_summary.png"
+                alt="Settle second brain view with daily summary, categories, and action items"
+                loading="eager"
+                decoding="async"
+              />
+              <div class="shot-glow" aria-hidden="true"></div>
+            </div>
+            <p class="caption">
+              Second Brain: daily summaries, categories, and entries — grouped by day for fast retrieval.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <section id="features" class="section">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <h2 class="section-title">A “second brain” that stays out of your way</h2>
+            <p class="section-subtitle">
+              Designed to feel calm and frictionless — capture now, understand later.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="card" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M8 6h8m-8 4h8m-8 4h5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7 3h10a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Day Notes</h3>
+              <p class="card-text">
+                Append-only, timestamped capture — perfect for meeting notes, ideas, and quick tasks.
+              </p>
+            </article>
+
+            <article class="card" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 20a8 8 0 1 0-8-8"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M6 18c2.2 0 4-1.8 4-4"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M14 9h6M14 13h4"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Second Brain</h3>
+              <p class="card-text">
+                Daily summaries, categories, and extracted entries — grouped by day so context doesn’t vanish.
+              </p>
+            </article>
+
+            <article class="card" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M10.5 18a7.5 7.5 0 1 1 5.2-2.1L21 21"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7.5 11h6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Search</h3>
+              <p class="card-text">
+                One search box for raw notes and second brain entries — recall in seconds.
+              </p>
+            </article>
+
+            <article class="card" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 3h10v6H7V3Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                  <path
+                    d="M7 15h10v6H7v-6Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    opacity="0.9"
+                  />
+                  <path
+                    d="M4 12h16"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    opacity="0.7"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Export</h3>
+              <p class="card-text">
+                Get your data out anytime: JSON + Markdown exports.
+              </p>
+            </article>
+
+            <article class="card" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 3v4m0 10v4M3 12h4m10 0h4"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7 7l2.8 2.8M14.2 14.2 17 17M17 7l-2.8 2.8M9.8 14.2 7 17"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Themes</h3>
+              <p class="card-text">
+                Terminal-inspired UI with multiple themes — including a deep, glassy dark mode.
+              </p>
+            </article>
+
+            <article class="card" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 11h3m4 0h3M7 15h10"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Keyboard-first</h3>
+              <p class="card-text">
+                Designed around flow: save, search, switch tabs, and summarize with shortcuts.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens" class="section section-alt">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <h2 class="section-title">Beautifully minimal, quietly powerful</h2>
+            <p class="section-subtitle">
+              A glassy dark design with bright cyan accents — calm enough for deep work.
+            </p>
+          </div>
+
+          <div class="shots">
+            <figure class="shot" data-reveal>
+              <div class="shot-frame">
+                <img
+                  src="images/settle_themes.png"
+                  alt="Settle themes: light and dark side-by-side with a terminal-inspired interface"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="shot-glow" aria-hidden="true"></div>
+              </div>
+              <figcaption class="caption">Multiple themes — including a crisp light mode and a deep dark mode.</figcaption>
+            </figure>
+
+            <figure class="shot" data-reveal>
+              <div class="shot-frame">
+                <img
+                  src="images/settle_summary.png"
+                  alt="Settle second brain screen with daily summary and category extraction"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="shot-glow" aria-hidden="true"></div>
+              </div>
+              <figcaption class="caption">Second brain view turns messy days into structured recall.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="shortcuts" class="section">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <h2 class="section-title">Shortcuts that keep you moving</h2>
+            <p class="section-subtitle">
+              The app is built around the keyboard — no hunting for buttons mid-thought.
+            </p>
+          </div>
+
+          <div class="two-col">
+            <div class="card card-wide" data-reveal>
+              <h3 class="card-title">Core actions</h3>
+              <ul class="kbd-list">
+                <li><span class="kbd">Shift</span> + <span class="kbd">Enter</span> <span class="kbd-desc">Save note</span></li>
+                <li><span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> <span class="kbd-desc">Copy &amp; clear input</span></li>
+                <li><span class="kbd">Esc</span> <span class="kbd-desc">Hide window</span></li>
+                <li><span class="kbd">Ctrl</span> + <span class="kbd">K</span> <span class="kbd-desc">Search</span></li>
+                <li><span class="kbd">Ctrl</span> + <span class="kbd">,</span> <span class="kbd-desc">Settings</span></li>
+              </ul>
+              <p class="fineprint">Tip: on macOS these will use <span class="mono">Cmd</span> equivalents once the build ships.</p>
+            </div>
+
+            <div class="card card-wide" data-reveal>
+              <h3 class="card-title">Navigation</h3>
+              <ul class="kbd-list">
+                <li><span class="kbd">Ctrl</span> + <span class="kbd">1</span> <span class="kbd-desc">Day Notes</span></li>
+                <li><span class="kbd">Ctrl</span> + <span class="kbd">2</span> <span class="kbd-desc">Second Brain</span></li>
+                <li><span class="kbd">Ctrl</span> + <span class="kbd">E</span> <span class="kbd-desc">Summarize day</span></li>
+              </ul>
+              <p class="fineprint">
+                Summaries support OpenAI-compatible APIs, with auto-save or “suggest mode” review.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="download" class="section section-cta">
+        <div class="container">
+          <div class="cta-card" data-reveal>
+            <div class="cta-copy">
+              <h2 class="section-title">Download Settle</h2>
+              <p class="section-subtitle">
+                Windows builds are available on GitHub Releases. macOS is on the roadmap.
+              </p>
+              <div class="cta-actions">
+                <a
+                  class="btn btn-primary btn-lg"
+                  href="https://github.com/acidmiku/settle/releases"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Download for Windows
+                </a>
+                <span class="btn btn-disabled btn-lg" aria-disabled="true">
+                  Download for macOS
+                  <span class="pill">Coming soon</span>
+                </span>
+                <a class="btn btn-ghost btn-lg" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">
+                  Star on GitHub
+                </a>
+              </div>
+              <p class="fineprint">
+                Built with <span class="mono">Rust</span> + <span class="mono">Tauri v2</span>. No cloud sync by default.
+              </p>
+            </div>
+
+            <div class="cta-mini">
+              <div class="mini-stat">
+                <span class="mini-k">Storage</span>
+                <span class="mini-v">Local SQLite</span>
+              </div>
+              <div class="mini-stat">
+                <span class="mini-k">Export</span>
+                <span class="mini-v">JSON / Markdown</span>
+              </div>
+              <div class="mini-stat">
+                <span class="mini-k">UI</span>
+                <span class="mini-v">Calm, uncluttered</span>
+              </div>
+              <div class="mini-stat">
+                <span class="mini-k">Search</span>
+                <span class="mini-v">Notes + entries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p class="footer-left">
+          <span class="mono">Settle</span> — instant notes, calm second brain.
+        </p>
+        <p class="footer-right">
+          <a class="footer-link" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">GitHub</a>
+          <span class="dot" aria-hidden="true">·</span>
+          <a class="footer-link" href="#download">Download</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
+
