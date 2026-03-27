@@ -1,4 +1,5 @@
 # Settle Landing
+Single-page landing site for the Settle keyboard-first notes app.
 
 Single-page landing site for **Settle**.
 
