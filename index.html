@@ -1,203 +1,286 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-skin="scratch">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Settle — let it out, start anywhere</title>
+    <meta name="description" content="Settle is a local editor for notes, code snippets and Markdown on Windows and macOS. Esc hides it. One shortcut brings it back. Ten designs, and everything stays on your device." />
+    <meta name="theme-color" content="#17191d" />
+    <link rel="canonical" href="https://settle.z01.tech/" />
 
-    <title>Settle — keyboard-first notes for Windows</title>
-    <meta
-      name="description"
-      content="Settle is a keyboard-first notes app for Windows. Append to a day note in seconds, then retrieve context through summaries, categories, and search."
-    />
-
-    <meta property="og:title" content="Settle — keyboard-first notes for Windows" />
-    <meta
-      property="og:description"
-      content="Append to a day note in seconds, then retrieve context through summaries, categories, and search. Local-first, keyboard-first."
-    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="images/settle_summary.png" />
+    <meta property="og:url" content="https://settle.z01.tech/" />
+    <meta property="og:title" content="Settle — let it out, start anywhere" />
+    <meta property="og:description" content="A local editor for notes, snippets and Markdown. Esc hides it. One shortcut brings it back." />
+    <meta property="og:image" content="https://settle.z01.tech/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
+    <script>
+      // Wear the visitor's design before first paint.
+      (function () {
+        var d = document.documentElement;
+        try { var s = localStorage.getItem('settle:skin'); if (s && /^[a-z]+$/.test(s)) d.dataset.skin = s; } catch (e) {}
+        var p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+        var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (/mac/i.test(p) && navigator.maxTouchPoints > 1);
+        d.dataset.os = mobile ? 'mobile' : /win/i.test(p) ? 'windows' : /mac/i.test(p) ? 'mac' : 'other';
+        d.classList.add('js');
+        setTimeout(function () { d.classList.add('loaded'); }, 2500);
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-    <link rel="preload" as="image" href="images/settle_summary.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,300..800&display=swap" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="window.css" />
+    <link rel="modulepreload" href="js/editor.js" />
+    <script type="module" src="js/main.js"></script>
   </head>
 
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="frame-rail" aria-hidden="true"></div>
 
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Settle, home">Settle</a>
-        <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="#features">Features</a>
-          <a class="nav-link" href="#shortcuts">Shortcuts</a>
-          <a class="nav-link" href="#download">Download</a>
-          <a class="nav-link" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">GitHub</a>
-        </nav>
-      </div>
+    <header class="head">
+      <a class="wordmark" href="#top" aria-label="Settle, back to top">settle</a>
+      <nav class="head-nav" aria-label="Primary">
+        <button class="skin-button" type="button" popovertarget="skins" aria-haspopup="true" aria-label="Page design">
+          <span class="skin-swatch" aria-hidden="true"><i></i><i></i></span>
+          <span class="skin-name" data-skin-name>Scratch</span>
+        </button>
+        <a class="head-link hide-narrow" href="https://github.com/acidmiku/settle">GitHub</a>
+        <a class="head-link head-download" href="#download">Download</a>
+      </nav>
     </header>
 
+    <div id="skins" class="skins" popover>
+      <p class="skins-label">This page wears</p>
+      <div class="skins-list" role="group" aria-label="Page design"></div>
+      <p class="skins-note">The same ten designs as the app.</p>
+    </div>
+
     <main id="main">
-      <article id="top">
-        <section class="hero">
-          <div class="container narrow">
-            <p class="eyebrow">A notes app for Windows</p>
-            <h1 class="display">
-              Instant capture.<br />
-              <span class="soft">Quiet recall.</span>
-            </h1>
-            <p class="lede">
-              Settle is a keyboard-first notes app. Append to a day note in seconds, then retrieve context through
-              summaries, categories, and search.
-            </p>
-            <p class="actions">
-              <a
-                class="link link-primary"
-                href="https://github.com/acidmiku/settle/releases"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Download for Windows <span class="arrow" aria-hidden="true">→</span>
-              </a>
-              <span class="meta-note">macOS — soon.</span>
+      <!-- Hero: the app's own empty-editor line, and the editor itself. -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <h1 class="hero-title" id="hero-title">
+          <span class="mask"><span>Let it out.</span></span>
+          <span class="mask accent"><span>Start anywhere.</span></span>
+        </h1>
+
+        <div class="hero-row">
+          <p class="lede reveal">
+            Settle is a local editor for notes, code snippets and Markdown. It fills the window when you need it and
+            gets out of the way when you don't.
+          </p>
+          <div class="cta reveal">
+            <a class="button" data-download="primary" href="https://github.com/acidmiku/settle/releases/latest">
+              <span data-download-label>Download Settle</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7" /></svg>
+            </a>
+            <p class="cta-meta">
+              <span data-download-meta>For Windows and macOS</span>
+              <a href="#download" data-download-other>All downloads</a>
             </p>
           </div>
-        </section>
+        </div>
 
-        <section class="screenshot screenshot-hero">
-          <div class="container">
-            <figure>
-              <div class="frame">
-                <img
-                  src="images/settle_summary.png"
-                  alt="Settle Second Brain view with daily summary, categories, and action items"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-              <figcaption>Second Brain — daily summaries, categories, and entries, grouped by day.</figcaption>
-            </figure>
+        <div class="dock" id="dock">
+          <svg class="ghost" aria-hidden="true" preserveAspectRatio="none"><rect x="1" y="1" rx="10" ry="10" pathLength="1" /></svg>
+          <button class="wake" type="button" data-summon>
+            <span class="wake-title">Settle is hidden.</span>
+            <span class="wake-keys hint-keyboard"><kbd data-mod>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd> brings it back</span>
+            <span class="wake-keys hint-touch">Tap to bring it back</span>
+          </button>
+          <div class="win-frame" id="live-frame">
+            <div class="win" id="live" role="application" aria-label="Settle editor demo" aria-roledescription="editor demo"></div>
           </div>
-        </section>
+        </div>
+        <p class="dock-hint reveal">
+          <span class="hint-keyboard">It works. Type in it. <kbd>Esc</kbd> hides it. <kbd data-mod>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd> brings it back, from anywhere on this page.</span>
+          <span class="hint-touch">It works. Write something, then tap × to hide it. It stays a tap away.</span>
+        </p>
+      </section>
 
-        <section id="features" class="section">
-          <div class="container narrow">
-            <h2 class="section-title">What it does</h2>
-            <p class="section-lede">
-              A small set of things, done well — built around the way you actually take notes during the day.
+      <!-- Ten designs: pinned, scroll-driven. -->
+      <section class="stage" id="designs" aria-labelledby="designs-title" style="--steps: 4">
+        <div class="stage-pin">
+          <div class="slides"></div>
+          <div class="stage-top">
+            <h2 class="stage-title" id="designs-title">Ten ways to settle&nbsp;in.</h2>
+            <p class="stage-count" aria-hidden="true"><span data-stage-count>01</span> / 10</p>
+          </div>
+          <nav class="stage-index" aria-label="Designs"></nav>
+          <div class="stage-progress" aria-hidden="true"><i></i></div>
+        </div>
+        <ol class="design-source" hidden>
+          <li data-id="scratch" data-tag="Default">Graphite surface, pink accents, compact tabs.</li>
+          <li data-id="kiln">Dark industrial surface with an orange tool rail.</li>
+          <li data-id="blackbox">Near-black canvas, lime edge, spacious text.</li>
+          <li data-id="optic">Paper white, cobalt details, precise typography.</li>
+          <li data-id="phosphor">Deep green, mint text, clock, and active-line glow.</li>
+          <li data-id="sidecar">A compact window docked to the right, with orange accents.</li>
+          <li data-id="cobalt">Bright blue canvas, large type, white action bar.</li>
+          <li data-id="redline">Warm paper, red rail, oversized first-line title for plain text.</li>
+          <li data-id="frost">Cool paper, frosted chrome, cyan accents.</li>
+          <li data-id="tape">A wide, shallow yellow writing surface with black chrome.</li>
+        </ol>
+      </section>
+
+      <!-- Keyboard: every feature has a key. -->
+      <section class="keys" id="keys" aria-labelledby="keys-title">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="keys-title">Hands stay on the&nbsp;keys.</h2>
+          <p class="section-note reveal">Every action has a shortcut. Press one. <span class="keys-last" data-keys-last aria-live="polite"></span></p>
+        </div>
+        <ol class="key-list">
+          <li class="key-row reveal" data-combo="mod+s">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>S</kbd></span>
+            <span class="key-name">Save</span>
+            <span class="key-desc">New drafts go to your dated notes and the tab clears for the next thought. Saved notes update in place.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+enter">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>Enter</kbd></span>
+            <span class="key-name">Copy + clear</span>
+            <span class="key-desc">The text goes to the clipboard and the tab empties. If copying fails, your text stays put.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+n">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>N</kbd></span>
+            <span class="key-name">New tab</span>
+            <span class="key-desc">Every tab is a draft. Close Settle mid-sentence; text, syntax and preview state come back with it.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+f">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>F</kbd></span>
+            <span class="key-name">Find</span>
+            <span class="key-desc">Find in the current tab. <kbd>F3</kbd> and <kbd>Shift</kbd><kbd>F3</kbd> step through the matches.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+k">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>K</kbd></span>
+            <span class="key-name">Search notes</span>
+            <span class="key-desc">Search every saved note from anywhere in the editor.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+shift+h">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>Shift</kbd><kbd>H</kbd></span>
+            <span class="key-name">Saved notes</span>
+            <span class="key-desc">A drawer of everything you've saved, grouped by day.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+,">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>,</kbd></span>
+            <span class="key-name">Settings</span>
+            <span class="key-desc">Designs, Enter to save, the global shortcut, and your data.</span>
+          </li>
+          <li class="key-row reveal" data-combo="escape">
+            <span class="key-combo"><kbd>Esc</kbd></span>
+            <span class="key-name">Hide</span>
+            <span class="key-desc">Dismisses a menu, the find bar or the drawer. Otherwise, Settle steps out of the way.</span>
+          </li>
+          <li class="key-row reveal" data-combo="mod+shift+space">
+            <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd></span>
+            <span class="key-name">Come back</span>
+            <span class="key-desc">From any app. Change the shortcut or turn it off in Settings.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Editor tools. -->
+      <section class="tools" aria-labelledby="tools-title">
+        <h2 class="section-title reveal" id="tools-title">Plain text, until it&nbsp;isn't.</h2>
+        <div class="tools-grid">
+          <div class="tool reveal">
+            <h3 class="tool-title">Syntax, detected</h3>
+            <p>Auto mode recognises the language on your device as you type. Pick one yourself, or choose Plain text to turn highlighting off. Each tab remembers.</p>
+            <p class="langs" aria-label="Supported languages">
+              <span>JavaScript</span> <span>TypeScript</span> <span>JSON</span> <span>HTML/XML</span> <span>CSS</span>
+              <span>Python</span> <span>Rust</span> <span>PowerShell</span> <span>Bash</span> <span>SQL</span> <span>YAML</span>
+              <span>INI/TOML</span> <span>C</span> <span>C++</span> <span>C#</span> <span>Java</span> <span>Kotlin</span>
+              <span>Swift</span> <span>Go</span> <span>Markdown</span> <span class="langs-more">and more in the selector</span>
             </p>
-            <dl class="features">
-              <div class="feature">
-                <dt>Day notes</dt>
-                <dd>Append-only, timestamped capture — for meeting notes, ideas, and quick tasks.</dd>
-              </div>
-              <div class="feature">
-                <dt>Second brain</dt>
-                <dd>Daily summaries, categories, and extracted entries — grouped by day so context stays put.</dd>
-              </div>
-              <div class="feature">
-                <dt>Search</dt>
-                <dd>One search box across raw notes and second-brain entries.</dd>
-              </div>
-              <div class="feature">
-                <dt>Export</dt>
-                <dd>JSON and Markdown, anytime. Your notes leave with you.</dd>
-              </div>
-              <div class="feature">
-                <dt>Themes</dt>
-                <dd>Light and dark, both first-class.</dd>
-              </div>
-              <div class="feature">
-                <dt>Local-first</dt>
-                <dd>SQLite on your machine. No cloud sync by default.</dd>
-              </div>
-            </dl>
           </div>
-        </section>
+          <div class="tool reveal">
+            <h3 class="tool-title">Markdown, previewed</h3>
+            <p>Headings, lists, tables, task checkboxes and highlighted code render in place of the editor. Preview never changes your text.</p>
+            <p>Web and email links open in your default apps. Remote images show their alt text, and scripts are removed.</p>
+          </div>
+          <div class="tool reveal">
+            <h3 class="tool-title">Lines, counted</h3>
+            <p>Line numbers in every design, one per logical line even when prose wraps. Code scrolls sideways; prose wraps where the design allows.</p>
+            <p>Right-click a tab to close it, or close everything, with or without saving.</p>
+          </div>
+        </div>
+      </section>
 
-        <section id="screens" class="screenshot">
-          <div class="container">
-            <figure>
-              <div class="frame">
-                <img
-                  src="images/settle_themes.png"
-                  alt="Settle themes — light and dark side by side"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <figcaption>Themes — light and dark, both designed.</figcaption>
-            </figure>
+      <!-- Data. -->
+      <section class="data" aria-labelledby="data-title">
+        <h2 class="section-title reveal" id="data-title">It stays on your&nbsp;machine.</h2>
+        <div class="paths">
+          <p class="data-path reveal" data-path-os="windows"><span class="data-path-label">Windows</span><code>%APPDATA%\com.settle.app\settle.sqlite3</code></p>
+          <p class="data-path reveal" data-path-os="mac"><span class="data-path-label">macOS</span><code>~/Library/Application Support/com.settle.app/settle.sqlite3</code></p>
+        </div>
+        <dl class="facts">
+          <div class="fact reveal">
+            <dt>One SQLite file</dt>
+            <dd>Notes, drafts and settings. No account. Drafts are cached as you type and backed up as you go.</dd>
           </div>
-        </section>
+          <div class="fact reveal">
+            <dt>Works offline</dt>
+            <dd>Writing, highlighting, preview and search all work without a connection.</dd>
+          </div>
+          <div class="fact reveal">
+            <dt>Leave whenever</dt>
+            <dd>Export everything to JSON or Markdown from Settings → Your data, open drafts included.</dd>
+          </div>
+        </dl>
+      </section>
 
-        <section id="shortcuts" class="section">
-          <div class="container narrow">
-            <h2 class="section-title">Shortcuts</h2>
-            <p class="section-lede">Built around the keyboard. No hunting for buttons mid-thought.</p>
-            <div class="shortcuts">
-              <table>
-                <tbody>
-                  <tr><th scope="row">Save note</th><td><kbd>Shift</kbd><kbd>Enter</kbd></td></tr>
-                  <tr><th scope="row">Copy &amp; clear input</th><td><kbd>Ctrl</kbd><kbd>Enter</kbd></td></tr>
-                  <tr><th scope="row">Hide window</th><td><kbd>Esc</kbd></td></tr>
-                  <tr><th scope="row">Search</th><td><kbd>Ctrl</kbd><kbd>K</kbd></td></tr>
-                  <tr><th scope="row">Settings</th><td><kbd>Ctrl</kbd><kbd>,</kbd></td></tr>
-                  <tr><th scope="row">Day notes</th><td><kbd>Ctrl</kbd><kbd>1</kbd></td></tr>
-                  <tr><th scope="row">Second brain</th><td><kbd>Ctrl</kbd><kbd>2</kbd></td></tr>
-                  <tr><th scope="row">Summarize day</th><td><kbd>Ctrl</kbd><kbd>E</kbd></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fineprint">macOS will use <code>Cmd</code> equivalents once the build ships.</p>
-          </div>
-        </section>
-
-        <section id="download" class="section">
-          <div class="container narrow">
-            <h2 class="section-title">Download</h2>
-            <p class="lede">
-              Windows builds are on GitHub Releases. Built with <code>Rust</code> and <code>Tauri&nbsp;2</code>.
-            </p>
-            <p class="actions">
-              <a
-                class="link link-primary"
-                href="https://github.com/acidmiku/settle/releases"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Download for Windows <span class="arrow" aria-hidden="true">→</span>
-              </a>
-              <a class="link" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">
-                View source <span class="arrow" aria-hidden="true">→</span>
-              </a>
-            </p>
-          </div>
-        </section>
-      </article>
+      <!-- Download. -->
+      <section class="download" id="download" aria-labelledby="download-title">
+        <h2 class="download-title reveal" id="download-title">Settle&nbsp;in.</h2>
+        <ul class="platforms">
+          <li class="platform reveal" data-platform="windows">
+            <a class="platform-link" href="https://github.com/acidmiku/settle/releases/latest" data-download="windows">
+              <span class="platform-name">Windows</span>
+              <span class="platform-meta" data-meta>64-bit installer</span>
+              <span class="platform-go" aria-hidden="true"><span data-ext>.exe</span><svg viewBox="0 0 24 24"><path d="M12 4v15M5 12l7 7 7-7" /></svg></span>
+            </a>
+          </li>
+          <li class="platform reveal" data-platform="macos">
+            <a class="platform-link" href="https://github.com/acidmiku/settle/releases/latest" data-download="macos">
+              <span class="platform-name">macOS</span>
+              <span class="platform-meta" data-meta>Universal · Apple silicon and Intel · macOS 12.3 or later</span>
+              <span class="platform-go" aria-hidden="true"><span data-ext>.dmg</span><svg viewBox="0 0 24 24"><path d="M12 4v15M5 12l7 7 7-7" /></svg></span>
+            </a>
+          </li>
+        </ul>
+        <div class="download-notes reveal">
+          <p data-release-line>Builds are on <a href="https://github.com/acidmiku/settle/releases">GitHub Releases</a>.</p>
+          <p>The macOS build isn't notarized yet. The first time you open it, allow it under System Settings → Privacy &amp; Security.</p>
+          <p>Built with Rust and Tauri 2. The source is on <a href="https://github.com/acidmiku/settle">GitHub</a>.</p>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p class="footer-left"><span class="mono">Settle</span> — instant notes, quiet recall.</p>
-        <p class="footer-right">
-          <a class="footer-link" href="https://github.com/acidmiku/settle" target="_blank" rel="noreferrer">GitHub</a>
-          <span aria-hidden="true">·</span>
-          <a class="footer-link" href="#download">Download</a>
-        </p>
-      </div>
+    <footer class="foot">
+      <p class="foot-mark"><span class="wordmark-small">settle</span> Keep calm and take notes.</p>
+      <p class="foot-links">
+        <a href="https://github.com/acidmiku/settle">GitHub</a>
+        <a href="https://github.com/acidmiku/settle/releases">Releases</a>
+        <button class="foot-skin" type="button" popovertarget="skins">Wearing <span data-skin-name>Scratch</span></button>
+      </p>
     </footer>
 
-    <script src="script.js" defer></script>
+    <div class="summon" id="summon" hidden>
+      <div class="summon-scrim" data-dismiss></div>
+      <div class="summon-slot"></div>
+    </div>
+
+    <button class="pill" id="pill" type="button" data-summon aria-label="Bring Settle back">
+      <i aria-hidden="true"></i>
+      <span class="pill-keys hint-keyboard"><kbd data-mod>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd></span>
+      <span class="pill-text">settle</span>
+    </button>
   </body>
 </html>
