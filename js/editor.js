@@ -95,6 +95,7 @@ export class Editor {
     this.language = 'plaintext';
     this.previewing = false;
     this.lineNumbers = true;
+    this.wordWrap = true;
     this.redline = false;
     this.lastTarget = this.el.input;
     this.metricKey = '';
@@ -127,7 +128,7 @@ export class Editor {
     title.value = split < 0 ? source : source.slice(0, split);
     input.value = this.redline ? (split < 0 ? '' : source.slice(split + 1)) : source;
     if (!this.redline) this.lastTarget = input;
-    const wrap = !PROSE.includes(this.language) || ['scratch', 'optic', 'phosphor'].includes(design) ? 'off' : 'soft';
+    const wrap = this.wordWrap ? 'soft' : 'off';
     input.setAttribute('wrap', wrap);
     layer.style.whiteSpace = wrap === 'off' ? 'pre' : 'pre-wrap';
     this.metricKey = '';

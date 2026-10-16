@@ -171,7 +171,7 @@
           <li class="key-row reveal" data-combo="mod+,">
             <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>,</kbd></span>
             <span class="key-name">Settings</span>
-            <span class="key-desc">Designs, Enter to save, the global shortcut, and your data.</span>
+            <span class="key-desc">Designs, word wrap, Enter to save, the global shortcut, startup, updates and your data.</span>
           </li>
           <li class="key-row reveal" data-combo="escape">
             <span class="key-combo"><kbd>Esc</kbd></span>
@@ -181,7 +181,7 @@
           <li class="key-row reveal" data-combo="mod+shift+space">
             <span class="key-combo"><kbd data-mod>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd></span>
             <span class="key-name">Come back</span>
-            <span class="key-desc">From any app. Change the shortcut or turn it off in Settings.</span>
+            <span class="key-desc">From any app. Change the shortcut or turn it off in Settings, or let Settle open when you sign in.</span>
           </li>
         </ol>
       </section>
@@ -206,8 +206,9 @@
             <p>Web and email links open in your default apps. Remote images show their alt text, and scripts are removed.</p>
           </div>
           <div class="tool reveal">
-            <h3 class="tool-title">Lines, counted</h3>
-            <p>Line numbers in every design, one per logical line even when prose wraps. Code scrolls sideways; prose wraps where the design allows.</p>
+            <h3 class="tool-title">Lines, wrapped and counted</h3>
+            <p>Word wrap fits long lines to the window in every design and syntax. Turn it off in Settings → Writing to scroll sideways instead. Your text never gains line breaks it didn't have.</p>
+            <p>Line numbers in every design, one per logical line however the text wraps.</p>
             <p>Right-click a tab to close it, or close everything, with or without saving.</p>
           </div>
         </div>
@@ -227,7 +228,7 @@
           </div>
           <div class="fact reveal">
             <dt>Works offline</dt>
-            <dd>Writing, highlighting, preview and search all work without a connection.</dd>
+            <dd>Writing, highlighting, preview and search all work without a connection. Update checks only run when you ask.</dd>
           </div>
           <div class="fact reveal">
             <dt>Leave whenever</dt>
@@ -257,7 +258,8 @@
         </ul>
         <div class="download-notes reveal">
           <p data-release-line>Builds are on <a href="https://github.com/acidmiku/settle/releases">GitHub Releases</a>.</p>
-          <p>The macOS build isn't notarized yet. The first time you open it, allow it under System Settings → Privacy &amp; Security.</p>
+          <p>Settle updates itself from 0.2.1 on: Settings → Updates checks the latest release, verifies its signature and restarts with your drafts saved. Coming from 0.2.0, install 0.2.1 by hand once.</p>
+          <p>The macOS build isn't notarized yet. Copy Settle into Applications first, then allow it under System Settings → Privacy &amp; Security the first time you open it.</p>
           <p>Built with Rust and Tauri 2. The source is on <a href="https://github.com/acidmiku/settle">GitHub</a>.</p>
         </div>
       </section>

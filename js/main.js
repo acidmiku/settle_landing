@@ -43,7 +43,7 @@ $$('[data-mod]').forEach(key => { key.textContent = MOD; });
 
 const DEMO = [
   { text: 'Before I forget\n\nThe bug is in the retry loop, not the parser.\nAsk about the staging keys on Monday.\nBook the dentist.\n\nBuy coffee before it becomes urgent.' },
-  { text: `# Release notes\n\n**0.2.0** is ready to write in.\n\n- [x] Ten designs\n- [x] Markdown preview\n- [ ] More coffee\n\n| Shortcut | Action |\n| --- | --- |\n| ${MOD} S | Save |\n| Esc | Hide |\n`, preview: true },
+  { text: `# Release notes\n\n**0.2.1** adds word wrap, updates and startup.\n\n- [x] Word wrap in every design\n- [x] Check for updates\n- [x] Start with OS\n- [ ] More coffee\n\n| Shortcut | Action |\n| --- | --- |\n| ${MOD} S | Save |\n| Esc | Hide |\n`, preview: true },
   { text: 'fn retry<T, E>(mut attempt: impl FnMut() -> Result<T, E>) -> Result<T, E> {\n    for wait in [100, 400, 1600] {\n        match attempt() {\n            Ok(value) => return Ok(value),\n            Err(_) => sleep(Duration::from_millis(wait)),\n        }\n    }\n    attempt()\n}\n' },
 ];
 
