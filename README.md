@@ -11,7 +11,7 @@ The page wears Settle. Its editor window is a working replica of the app's: same
 | `index.html` | The page. |
 | `styles.css` | Page styles and the ten page skins (`[data-skin]`). |
 | `window.css` | The editor window, ported from the app's `themes.css`, `main.css` and `editor.css`, scoped to `.win`. |
-| `js/main.js` | Hide/summon, the designs stage, design switching, keyboard section, release lookup. |
+| `js/main.js` | Hide/summon, the designs stage, design switching, keyboard section, download labels. |
 | `js/editor.js` | The editor replica: tabs, gutter, wrapping, syntax, preview, save and copy. |
 | `js/syntax.js`, `js/languages.js` | Detection and rendering rules shared with the app. |
 | `vendor/editor.js` | Highlight.js, Marked and DOMPurify, copied from the app's `src/vendor/` (licenses in `vendor/LICENSES.txt`). Loaded lazily. |
@@ -21,7 +21,7 @@ When the app's designs or vendor bundle change, copy the new tokens into `window
 
 ## Downloads
 
-Download links come from the GitHub releases API at runtime: the newest non-draft, non-prerelease `v0.2.0`+ release with a `.exe` or `.dmg` asset. The response is cached in `localStorage` for 15 minutes. Without JavaScript or API access, links fall back to `releases/latest`. Nothing needs editing when a new version ships.
+Every download link opens `https://github.com/acidmiku/settle/releases/latest`. The page shows no version numbers, so a new release needs no change here. The only per-visitor logic picks the button label ("Download for Windows" or "Download for macOS") and marks "This computer".
 
 ## Local preview
 

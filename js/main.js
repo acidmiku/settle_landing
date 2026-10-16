@@ -43,7 +43,7 @@ $$('[data-mod]').forEach(key => { key.textContent = MOD; });
 
 const DEMO = [
   { text: 'Before I forget\n\nThe bug is in the retry loop, not the parser.\nAsk about the staging keys on Monday.\nBook the dentist.\n\nBuy coffee before it becomes urgent.' },
-  { text: `# Release notes\n\n**0.2.1** adds word wrap, updates and startup.\n\n- [x] Word wrap in every design\n- [x] Check for updates\n- [x] Start with OS\n- [ ] More coffee\n\n| Shortcut | Action |\n| --- | --- |\n| ${MOD} S | Save |\n| Esc | Hide |\n`, preview: true },
+  { text: `# Release notes\n\n**Ready** to write in.\n\n- [x] Word wrap in every design\n- [x] Check for updates\n- [x] Start with OS\n- [ ] More coffee\n\n| Shortcut | Action |\n| --- | --- |\n| ${MOD} S | Save |\n| Esc | Hide |\n`, preview: true },
   { text: 'fn retry<T, E>(mut attempt: impl FnMut() -> Result<T, E>) -> Result<T, E> {\n    for wait in [100, 400, 1600] {\n        match attempt() {\n            Ok(value) => return Ok(value),\n            Err(_) => sleep(Duration::from_millis(wait)),\n        }\n    }\n    attempt()\n}\n' },
 ];
 
@@ -558,70 +558,15 @@ $$('.reveal').forEach(el => reveals.observe(el));
 
 /* ---------- downloads ---------- */
 
-const RELEASES = 'https://github.com/acidmiku/settle/releases';
-const primary = $('[data-download="primary"]');
+// Every download opens the latest GitHub release, so a new version needs no change here.
 const osName = { windows: 'Windows', macos: 'macOS' };
-if (desktopOS) $('[data-download-label]').textContent = `Download for ${osName[desktopOS]}`;
-const YOURS = '<span class="platform-yours">This computer</span>';
-const yoursTag = os => (os === desktopOS ? YOURS : '');
-if (desktopOS) $(`.platform[data-platform="${desktopOS}"] [data-meta]`).insertAdjacentHTML('afterbegin', YOURS);
+if (desktopOS) {
+  $('[data-download-label]').textContent = `Download for ${osName[desktopOS]}`;
+  $(`.platform[data-platform="${desktopOS}"] [data-meta]`).insertAdjacentHTML('afterbegin', '<span class="platform-yours">This computer</span>');
+} else {
+  $('[data-download="primary"]').href = '#download';
+}
 if (isMobile) $('[data-download-meta]').textContent = 'For Windows and macOS desktops';
-
-const megabytes = bytes => `${(bytes / 1048576).toFixed(1)} MB`;
-function versionOf(tag) {
-  const m = /^v?(\d+)\.(\d+)\.(\d+)/.exec(tag || '');
-  return m ? m.slice(1).map(Number) : null;
-}
-function pickRelease(list) {
-  for (const r of list) {
-    const v = versionOf(r.tag_name);
-    // 0.1.x is the app before its rebuild; this page describes 0.2 and later.
-    if (r.draft || r.prerelease || !v || v[0] * 1e6 + v[1] * 1e3 + v[2] < 2000) continue;
-    const win = r.assets.find(a => /setup\.exe$/i.test(a.name)) || r.assets.find(a => /\.(exe|msi)$/i.test(a.name));
-    const mac = r.assets.find(a => /\.dmg$/i.test(a.name));
-    if (!win && !mac) continue;
-    const asset = a => a && { url: a.browser_download_url, size: a.size, name: a.name };
-    return { version: v.join('.'), date: r.published_at, page: r.html_url, windows: asset(win), macos: asset(mac) };
-  }
-  return null;
-}
-async function loadRelease() {
-  try {
-    const cached = JSON.parse(store.get('settle:release') || 'null');
-    if (cached && Date.now() - cached.at < 15 * 60 * 1000) return cached.data;
-  } catch { /* Fetch again. */ }
-  const response = await fetch('https://api.github.com/repos/acidmiku/settle/releases?per_page=20', { headers: { Accept: 'application/vnd.github+json' } });
-  if (!response.ok) throw new Error(`GitHub answered ${response.status}`);
-  const data = pickRelease(await response.json());
-  store.set('settle:release', JSON.stringify({ at: Date.now(), data }));
-  return data;
-}
-function applyRelease(release) {
-  if (!release) return;
-  const date = new Date(release.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  $('[data-release-line]').innerHTML = `Version ${release.version}, released ${date}. Every build is on <a href="${RELEASES}">GitHub Releases</a>.`;
-  for (const os of ['windows', 'macos']) {
-    const link = $(`[data-download="${os}"]`), asset = release[os];
-    const meta = $('[data-meta]', link);
-    if (asset) {
-      link.href = asset.url;
-      meta.innerHTML = `${yoursTag(os)}<b>${release.version}</b> · ${os === 'windows' ? '64-bit installer' : 'Universal · Apple silicon and Intel · macOS 12.3+'} · ${megabytes(asset.size)}`;
-    } else {
-      link.href = release.page;
-      meta.innerHTML = `${yoursTag(os)}<b>${release.version}</b> · Not in this release yet. See the release page.`;
-      $('[data-ext]', link).textContent = 'GitHub';
-    }
-  }
-  const asset = desktopOS && release[desktopOS];
-  if (asset) {
-    primary.href = asset.url;
-    $('[data-download-meta]').textContent = `${release.version} · ${megabytes(asset.size)}`;
-  } else {
-    primary.href = '#download';
-    $('[data-download-label]').textContent = `Download Settle ${release.version}`;
-  }
-}
-loadRelease().then(applyRelease).catch(() => {});
 
 /* ---------- start ---------- */
 

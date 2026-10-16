@@ -243,7 +243,7 @@ img, svg { display: block; }
 }
 .button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .6s var(--ease); }
 .button:hover { background: color-mix(in oklab, var(--p-accent) 86%, var(--p-ink)); transform: translateY(-2px); box-shadow: 0 18px 40px -18px var(--p-accent); }
-.button:hover svg { transform: translateY(3px); }
+.button:hover svg { transform: translate(2px, -2px); }
 .button:active { transform: translateY(0); transition-duration: .1s; }
 .cta-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; font: 400 12px/1.5 var(--f-mono); font-stretch: 87.5%; color: var(--p-mute); }
 
@@ -507,7 +507,7 @@ img, svg { display: block; }
 .platform-link:focus-visible .platform-meta, .platform-link:focus-visible .platform-meta b { color: var(--p-on); }
 .platform-go { display: inline-flex; align-items: center; gap: 12px; font: 500 14px var(--f-mono); font-stretch: 87.5%; }
 .platform-go svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .6s var(--ease); }
-.platform-link:hover .platform-go svg { transform: translateY(4px); }
+.platform-link:hover .platform-go svg { transform: translate(3px, -3px); }
 .platform-yours { display: inline-block; margin-right: 12px; padding: 3px 7px; vertical-align: .05em; border: 1px solid currentColor; border-radius: 3px; font: 500 10px/1.2 var(--f-mono); font-stretch: 87.5%; letter-spacing: 0; }
 .download-notes { display: grid; gap: 8px; margin-top: 36px; max-width: 72ch; font-size: 15px; color: var(--p-mute); }
 
