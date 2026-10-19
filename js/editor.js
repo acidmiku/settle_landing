@@ -19,7 +19,7 @@ function markup(live) {
   const field = live ? '' : ' readonly tabindex="-1"';
   return `
 <div class="win-titlebar" aria-hidden="true"><i></i><i></i><i></i><span>Settle</span></div>
-<aside class="design-rail" aria-hidden="true"><span class="rail-brand">SETTLE</span><button type="button" tabindex="-1" data-act="history">↶</button><button type="button" tabindex="-1" data-act="settings">⚙</button></aside>
+<aside class="design-rail" aria-label="Quick tools"><span class="rail-brand" aria-hidden="true">SETTLE</span><button type="button" data-act="history" title="Saved notes" aria-label="Saved notes"${off}>↶</button><button type="button" data-act="settings" title="Design (${MOD}+,)" aria-label="Choose a design"${off}>⚙</button></aside>
 <header class="topbar">
   <time class="clock" aria-hidden="true"></time>
   <div class="brand">settle</div>
@@ -407,7 +407,12 @@ export class Editor {
       else if (mod && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 's') { e.preventDefault(); this.save(); }
       else if (mod && e.key === 'Enter') { e.preventDefault(); this.copyClear(); }
       else if (e.shiftKey && !mod && e.key === 'Enter' && (e.target === input || e.target === title)) { e.preventDefault(); this.save(); }
-      else if (mod && e.key === ',') { e.preventDefault(); this.onAction('settings', this.win.querySelector('.top-actions [data-act="settings"]')); }
+      else if (mod && e.key === ',') {
+        // Kiln keeps its gear in the rail, so anchor to whichever one is showing.
+        e.preventDefault();
+        const gear = [...this.win.querySelectorAll('[data-act="settings"]')].find(b => b.getClientRects().length);
+        this.onAction('settings', gear);
+      }
     });
     tabs.addEventListener('keydown', e => {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;

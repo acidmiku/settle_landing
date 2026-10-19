@@ -166,7 +166,8 @@
 .win .design-rail button { width:42px; height:42px; font-size:27px; padding:0; }
 .win[data-design="kiln"] .brand { font-size:36px; font-stretch:condensed; font-weight:800; }
 .win[data-design="kiln"] .action-save, .win[data-design="redline"] .action-save { background:var(--accent); color:var(--on-accent); min-width:26%; }
-.win[data-design="kiln"] [data-act="history"], .win[data-design="kiln"] [data-act="settings"] { display:none; }
+/* Kiln moves these two into its rail; only the top-bar copies hide. */
+.win[data-design="kiln"] .top-actions [data-act="history"], .win[data-design="kiln"] .top-actions [data-act="settings"] { display:none; }
 .win[data-design="blackbox"] { border-left:5px solid var(--accent); }
 .win[data-design="optic"] { border-left:4px solid var(--accent); border-bottom:4px solid var(--accent); }
 .win[data-design="optic"] .brand { border-right:1px solid var(--line); margin-right:12px; font-size:23px; }
